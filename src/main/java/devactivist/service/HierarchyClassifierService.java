@@ -6,29 +6,32 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import devactivist.entity.PasFileHierarchy;
+import devactivist.repository.interfaces.PasFileHierarchyRepo;
 
 @Service
-public class HierarchyClassifier {
+public class HierarchyClassifierService {
 
-	static String IDENTIFIER_CONST =  "->";
-	static String filePath = "D:\\Workspace\\Eclipse\\spring-mongo\\src\\main\\resources\\hierarchyWorkbook.xls";
+	@Autowired
+	private PasFileHierarchyRepo pasFileHierarchyRepo;
 
-	public static void main(String[] args) {
+	String IDENTIFIER_CONST =  "->";
+	String filePath = "D:\\Workspace\\Eclipse\\spring-mongo\\src\\main\\resources\\hierarchyWorkbook.xls";
+
+	public void main() {
 		File workBookfile = new File(filePath);
 		try {
 			Workbook hierarchyBook = WorkbookFactory.create(workBookfile);
@@ -44,7 +47,7 @@ public class HierarchyClassifier {
 		}
 	}
 
-	public static void getBookFile(Sheet fileSheet) {
+	public  void getBookFile(Sheet fileSheet) {
 		DataFormatter formatData = new DataFormatter();
 
 		int startRow = 2;
@@ -84,7 +87,7 @@ public class HierarchyClassifier {
 		formTreeStructure(pasList);
 	}
 
-	public static String checkAndFindParent(Sheet fileSheet, int startRow, int currRow, int startCol, int childCol) {
+	public  String checkAndFindParent(Sheet fileSheet, int startRow, int currRow, int startCol, int childCol) {
 		DataFormatter formatData = new DataFormatter();
 
 		/*if(startRow == currRow) {
@@ -110,7 +113,7 @@ public class HierarchyClassifier {
 		return parentName;
 	}
 
-	private static void formTreeStructure(List<PasFileHierarchy> pasList) {
+	private  void formTreeStructure(List<PasFileHierarchy> pasList) {
 		Map<String, PasFileHierarchy> fileBasedMap = new HashMap<>();
 		pasList.forEach(hierarchy -> fileBasedMap.put(hierarchy.getFileName(), hierarchy));
 
@@ -133,7 +136,7 @@ public class HierarchyClassifier {
 		});
 
 		List<PasFileHierarchy> formedTreeStructure = new ArrayList<>();
-		
+
 		for(Map.Entry<String, PasFileHierarchy> entry : fileBasedMap.entrySet()) {
 			PasFileHierarchy mappedHierarchy = entry.getValue();
 			if(mappedHierarchy.isParent() && !mappedHierarchy.isChild()) {
@@ -142,6 +145,8 @@ public class HierarchyClassifier {
 		}
 
 		System.out.println(formedTreeStructure);
+
+		pasFileHierarchyRepo.saveAll(formedTreeStructure);
 	}
 
 }

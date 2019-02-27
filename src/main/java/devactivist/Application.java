@@ -1,14 +1,9 @@
 package devactivist;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import devactivist.entity.WorksheetPasDetails;
 
 import devactivist.repository.interfaces.WorksheetPasDetailsRepo;
 
@@ -24,7 +19,7 @@ public class Application implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		List<WorksheetPasDetails> cxv = pasDetailsRepo.findAll();
+		/*List<WorksheetPasDetails> cxv = pasDetailsRepo.findAll();
 		System.out.println(cxv);
 		
 		List<String> pasFileList = new ArrayList<String>();
@@ -52,7 +47,7 @@ public class Application implements CommandLineRunner{
 //		pasDetailsRepo.save(pasDetails);
 		
 		cxv = pasDetailsRepo.findAll();
-		System.out.println(cxv);
+		System.out.println(cxv);*/
 		
 	}
 

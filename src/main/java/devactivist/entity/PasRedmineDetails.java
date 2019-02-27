@@ -10,7 +10,7 @@ import lombok.Data;
 
 @Data
 @Builder
-@Document(collection="WorksheetPasDetails")
+@Document(collection="PasRedmineDetails")
 public class PasRedmineDetails {
 	
 	@Id
