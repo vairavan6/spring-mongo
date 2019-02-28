@@ -1,16 +1,20 @@
 package devactivist.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import devactivist.entity.PasFileHierarchy;
 import devactivist.service.HierarchyClassifierService;
 
-@Controller
 @RestController
+@CrossOrigin
 @RequestMapping("worksheet/")
 public class WorksheetDetailController {
 	
@@ -20,6 +24,11 @@ public class WorksheetDetailController {
 	@GetMapping("save/pas/hiearchy")
 	public void savePasFileHierarchy() {
 		hierarchyService.main();	
+	}
+	
+	@GetMapping("pas/hiearchy")
+	public List<PasFileHierarchy> retrievePasFileHierarchy() {
+		return hierarchyService.getHierarchyData();
 	}
 	
 	@PostMapping("save/pas/details")

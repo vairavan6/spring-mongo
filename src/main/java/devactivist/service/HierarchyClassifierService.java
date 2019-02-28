@@ -46,6 +46,10 @@ public class HierarchyClassifierService {
 			e.printStackTrace();
 		}
 	}
+	
+	public List<PasFileHierarchy> getHierarchyData() {
+		return pasFileHierarchyRepo.findAll();
+	}
 
 	public  void getBookFile(Sheet fileSheet) {
 		DataFormatter formatData = new DataFormatter();
