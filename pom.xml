@@ -80,11 +80,17 @@
 			<version>3.1.2</version>
 		</dependency>
 
-<!-- https://github.com/centic9/jgit-cookbook -->
+		<!-- https://github.com/centic9/jgit-cookbook -->
 		<dependency>
 			<groupId>org.eclipse.jgit</groupId>
 			<artifactId>org.eclipse.jgit</artifactId>
 			<version>4.6.0.201612231935-r</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.tmatesoft.svnkit</groupId>
+			<artifactId>svnkit</artifactId>
+			<version>1.9.3</version>
 		</dependency>
 
 	</dependencies>
