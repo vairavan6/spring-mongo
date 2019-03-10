@@ -14,6 +14,9 @@ import lombok.Data;
 public class VersionControlStatus {
 
 	private String versionType;
+	
+	private String moduleName;
+	
 	private boolean syncInProgress;
 
 	@LastModifiedDate
