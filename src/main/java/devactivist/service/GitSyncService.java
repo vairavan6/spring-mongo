@@ -23,8 +23,8 @@ public class GitSyncService {
 
 	static String remoteRepo = "https://github.com/vairavan6/devtools.git";
 	static String localRepo = "H:\\GitProjectTest\\";
-	static String gitUser = "vairavan6";
-	static String gitPass = "vairavan@6";
+	static String gitUser = "****";
+	static String gitPass = "****";
 
 	public static void main(String[] args) {
 		try {
